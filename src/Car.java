@@ -8,6 +8,14 @@ public class Car extends Mobil implements Competing{
     private String typeAuto;
     public static final double MAX_SPEED_CAR = 250;
 
+    private TypeBodyCar typeBodyCar;
+
+// ENUM ********************************************************************************
+    public enum TypeBodyCar {
+        SEDAN, HUNCHBOOK, COUPE, STATE, OFF_ROAD, CROSSOVER, PICKUP, VAN, MINIVAN;
+
+    }
+
 // getters **********************************************************************************************
 
     public String getBrand() { return brand;
@@ -18,7 +26,10 @@ public class Car extends Mobil implements Competing{
     }
     public String getTypeAuto() { return typeAuto;
     }
-// setters **********************************************************************************************
+
+    public TypeBodyCar getTypeBodyCar() { return typeBodyCar;
+    }
+    // setters **********************************************************************************************
 
     public void setBrand(String brand) {
         this.brand = (brand != null && !brand.isBlank() && !brand.isEmpty()) ? brand : "default";
@@ -33,14 +44,19 @@ public class Car extends Mobil implements Competing{
     public void setTypeAuto(String typeAuto) {
         this.typeAuto = (typeAuto!= null && !typeAuto.isBlank() && !typeAuto.isEmpty())? typeAuto : "default";
     }
+
+    public void setTypeBodyCar(TypeBodyCar typeBodyCar) {
+        this.typeBodyCar = typeBodyCar;
+    }
     // constructor *******************************************************************************************
 
 
-    public Car (String typeAuto, String brand, String model, double engineVolume) {
+    public Car (String typeAuto, String brand, String model, double engineVolume, TypeBodyCar typeBodyCar) {
         setBrand(brand);
         setModel(model);
         setEngineVolume(engineVolume);
         setTypeAuto(typeAuto);
+        setTypeBodyCar(typeBodyCar);
     }
 
 
@@ -100,7 +116,8 @@ public class Car extends Mobil implements Competing{
     }
     @Override
     public String toString() {
-        return  this.typeAuto + ": " + this.brand + ", модель - " + this.model + ", V двигателя - " + this.engineVolume + ".";
+        return  this.typeAuto + ": " + this.brand + ", модель - " + this.model
+                + ", V двигателя - " + this.engineVolume + ", тип кузова - " + this.typeBodyCar + ".";
     }
 } // class **********************************************************************************************************
 

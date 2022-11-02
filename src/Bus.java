@@ -5,6 +5,12 @@ public class Bus extends Mobil implements Competing {
     private String typeAuto;
     public static final double MAX_SPEED_CAR = 120;
 
+    private BusCapacity busCapacity;
+
+// ENUM ********************************************************************************
+    public enum BusCapacity {EXTRA_SMOLL, SMOLL, AVEREGE, BIG, EXTRA_BIG}
+
+
 // getters **********************************************************************************************
 
     public String getBrand() { return brand;
@@ -15,7 +21,10 @@ public class Bus extends Mobil implements Competing {
     }
     public String getTypeAuto() { return typeAuto;
     }
-// setters **********************************************************************************************
+
+    public BusCapacity getBusCapacity() { return busCapacity;
+    }
+    // setters **********************************************************************************************
 
     public void setBrand(String brand) {
         this.brand = (brand != null && !brand.isBlank() && !brand.isEmpty()) ? brand : "default";
@@ -30,14 +39,19 @@ public class Bus extends Mobil implements Competing {
     public void setTypeAuto(String typeAuto) {
         this.typeAuto = (typeAuto!= null && !typeAuto.isBlank() && !typeAuto.isEmpty())? typeAuto : "default";
     }
+
+    public void setBusCapacity(BusCapacity busCapacity) {
+        this.busCapacity = busCapacity;
+    }
     // constructor *******************************************************************************************
 
 
-    public Bus (String typeAuto, String brand, String model, double engineVolume) {
+    public Bus (String typeAuto, String brand, String model, double engineVolume,BusCapacity busCapacity) {
         setBrand(brand);
         setModel(model);
         setEngineVolume(engineVolume);
         setTypeAuto(typeAuto);
+        setBusCapacity(busCapacity);
     }
 
 
@@ -69,7 +83,8 @@ public class Bus extends Mobil implements Competing {
     }
     @Override
     public String toString() {
-        return  this.typeAuto + ": " + this.brand + ", модель - " + this.model + ", V двигателя - " + this.engineVolume + ".";
+        return  this.typeAuto + ": " + this.brand + ", модель - " + this.model
+                + ", V двигателя - " + this.engineVolume + ", вместимость " + this.busCapacity + ".";
     }
     public static void printAuto (Bus[] buses) {
         for (Bus el : buses) {

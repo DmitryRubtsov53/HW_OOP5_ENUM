@@ -5,6 +5,12 @@ public class Truck extends Mobil implements Competing{
     private String typeAuto;
     public static final double MAX_SPEED_CAR = 170;
 
+    private TruckCapacity truckCapacity;
+
+// ENUM ********************************************************************************
+    public enum TruckCapacity {
+        N1, N2, N3;
+    }
 // getters **********************************************************************************************
 
     public String getBrand() { return brand;
@@ -15,7 +21,10 @@ public class Truck extends Mobil implements Competing{
     }
     public String getTypeAuto() { return typeAuto;
     }
-// setters **********************************************************************************************
+
+    public TruckCapacity getTruckCapacity() { return truckCapacity;
+    }
+    // setters **********************************************************************************************
 
     public void setBrand(String brand) {
         this.brand = (brand != null && !brand.isBlank() && !brand.isEmpty()) ? brand : "default";
@@ -30,13 +39,18 @@ public class Truck extends Mobil implements Competing{
     public void setTypeAuto(String typeAuto) {
         this.typeAuto = (typeAuto!= null && !typeAuto.isBlank() && !typeAuto.isEmpty())? typeAuto : "default";
     }
+
+    public void setTruckCapacity(TruckCapacity truckCapacity) {
+        this.truckCapacity = truckCapacity;
+    }
     // constructor *******************************************************************************************
 
-    public Truck (String typeAuto, String brand, String model, double engineVolume) {
+    public Truck (String typeAuto, String brand, String model, double engineVolume, TruckCapacity truckCapacity) {
         setBrand(brand);
         setModel(model);
         setEngineVolume(engineVolume);
         setTypeAuto(typeAuto);
+        setTruckCapacity(truckCapacity);
     }
 
 // methods interfase ********************************************************************
@@ -67,7 +81,8 @@ public class Truck extends Mobil implements Competing{
     }
     @Override
     public String toString() {
-        return  this.typeAuto + ": " + this.brand + ", модель - " + this.model + ", V двигателя - " + this.engineVolume + ".";
+        return  this.typeAuto + ": " + this.brand + ", модель - " + this.model
+                + ", V двигателя - " + this.engineVolume + ", грузоподъемность " + this.truckCapacity + ".";
     }
     public static void printAuto (Truck[] trucks) {
         for (Truck el : trucks) {
