@@ -4,30 +4,30 @@ public class Main {
         System.out.println();
 
         Car[] cars = new Car [4];
-        cars[0] = new Car("Car", "Audi", "A8 50L", 4.1);
-        cars[1] = new Car("Car", "BMW", "Z05", 3.5);
-        cars[2] = new Car("Car", "Hyundai", "i70L", 3.7);
-        cars[3] = new Car("Car", "Kia", "Sport", 4.0);
+        cars[0] = new Car("Car", "Audi", "A8 50L", 4.1, Car.TypeBodyCar.SEDAN);
+        cars[1] = new Car("Car", "BMW", "Z05", 3.5, Car.TypeBodyCar.HUNCHBOOK);
+        cars[2] = new Car("Car", "Hyundai", "i70L", 3.7, Car.TypeBodyCar.VAN);
+        cars[3] = new Car("Car", "Kia", "Sport", 4.0, Car.TypeBodyCar.PICKUP);
 
-        Car.printAuto(cars);
+        //Car.printAuto(cars);
 
         Truck[] trucks = new Truck [4];
-        trucks[0] = new Truck("Truck", "КаМАЗ", "К850", 10.5);
-        trucks[1] = new Truck("Truck", "МАЗ>", "A650", 10.5);
-        trucks[2] = new Truck("Truck", "КрАЗ", "М1020", 12);
-        trucks[3] = new Truck("Truck", "ГАЗ", "1301", 8.5);
+        trucks[0] = new Truck("Truck", "КаМАЗ", "К850", 10.5, Truck.TruckCapacity.N3);
+        trucks[1] = new Truck("Truck", "МАЗ", "A650", 10.5,null);
+        trucks[2] = new Truck("Truck", "КрАЗ", "М1020", 12,Truck.TruckCapacity.N3);
+        trucks[3] = new Truck("Truck", "ГАЗ", "1301", 8.5,Truck.TruckCapacity.N2);
 
-        Truck.printAuto(trucks);
+        //Truck.printAuto(trucks);
 
         Bus[] buses = new Bus [4];
-        buses[0] = new Bus("Bus", "НефАЗ", "Н456", 8.5);
-        buses[1] = new Bus("Bus", "ПАЗ", "П587", 9);
-        buses[2] = new Bus("Bus", "ЛиАЗ", "Л110", 10);
-        buses[3] = new Bus("Bus", "ГАЗ", "Б1500", 9.5);
+        buses[0] = new Bus("Bus", "НефАЗ", "Н456", 8.5, Bus.BusCapacity.BIG);
+        buses[1] = new Bus("Bus", "ПАЗ", "П587", 9, Bus.BusCapacity.AVEREGE);
+        buses[2] = new Bus("Bus", "ЛиАЗ", "Л110", 10, Bus.BusCapacity.AVEREGE);
+        buses[3] = new Bus("Bus", "ГАЗ", "Б1500", 9.5, Bus.BusCapacity.SMOLL);
 
-        Bus.printAuto(buses);
+        buses[3].setBusCapacity(Bus.BusCapacity.BIG);
 
-        Driver [] drivers = new Driver[3];
+        //Bus.printAuto(buses);
 
         Driver <Car> ivan = new Driver<>("Иван", "B", 10 );
         System.out.print(ivan);
@@ -41,7 +41,14 @@ public class Main {
         System.out.print(semen);
         semen.driveBus(buses[0]);
 
-    } // main ********************************************************************************************
+        System.out.println();
+
+        cars[1].printType();
+        trucks[1].printType();
+        buses[1].printType();
 
 
-} // class Main ******************************************************************************************
+    } // main
+
+
+} // class Main

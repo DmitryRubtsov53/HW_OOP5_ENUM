@@ -6,4 +6,5 @@ public abstract class Mobil {
 
     public abstract void startMoving ();
     public abstract void finishMove ();
+    public abstract void printType ();
 }
