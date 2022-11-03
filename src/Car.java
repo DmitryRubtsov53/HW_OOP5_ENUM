@@ -98,6 +98,13 @@ public class Car extends Mobil implements Competing{
     }
 
     @Override
+    public void printType() {
+        if (typeBodyCar == null) {
+            System.out.println("Данных недостатчно");
+        } else System.out.println("Автомобиль "+ getBrand() + " " + getModel() +" имеет тип кузава " + typeBodyCar.getTypeBody() + ".");
+    }
+
+    @Override
     public void pitStop() {
         System.out.println("Pit Stop: Пора сменить колёса! Заезжай в Автосервис.");
     }
@@ -126,19 +133,7 @@ public class Car extends Mobil implements Competing{
         cars[0].bestTime();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car cars = (Car) o;
-        return Double.compare(cars.engineVolume, engineVolume) == 0
-                && Objects.equals(brand, cars.brand) && Objects.equals(model, cars.model)
-                && Objects.equals(typeAuto, cars.typeAuto);
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(brand, model, engineVolume, typeAuto);
-    }
+
     @Override
     public String toString() {
         return  this.typeAuto + ": " + this.brand + ", модель - " + this.model

@@ -76,6 +76,13 @@ public class Truck extends Mobil implements Competing{
     }
 
     @Override
+    public void printType() {
+        if (truckCapacity == null) {
+            System.out.println("Данных недостатчно");
+        } else System.out.println("Грузовик "+ getBrand() + " " + getModel() +" имеет грузоподъёмность " + truckCapacity.getTonnage() + ".");
+    }
+
+    @Override
     public void pitStop() {
         System.out.println("Пора сменить колёса! Заезжай на Pit Stop.");
     }
@@ -89,6 +96,8 @@ public class Truck extends Mobil implements Competing{
     public void maxSpeed() {
         System.out.println("Максимальная скорость " + MAX_SPEED_CAR + " км/ч.");
     }
+
+
     @Override
     public String toString() {
         return  this.typeAuto + ": " + this.brand + ", модель - " + this.model

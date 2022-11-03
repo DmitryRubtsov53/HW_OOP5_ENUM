@@ -15,10 +15,10 @@ public class Bus extends Mobil implements Competing {
         BIG("большая (60–80)"),
         EXTRA_BIG("особо большая (100–120 мест)");
 
-        private String capacity;
+        public final String capacity;
 
         BusCapacity(String capacity) {
-             this.capacity = capacity != null && capacity.isBlank() ? capacity : "Данных недостаточно";
+             this.capacity = capacity != null && !capacity.isBlank() ? capacity : "Данных недостаточно";
         }
         public String getCapacity() { return capacity;
         }
@@ -82,6 +82,13 @@ public class Bus extends Mobil implements Competing {
     }
 
     @Override
+    public void printType() {
+        if (busCapacity == null) {
+            System.out.println("Данных недостатчно");
+        } else System.out.println("Автобус "+ getBrand() + " " + getModel() +" имеет тип вместимости " + busCapacity.getCapacity() + ".");
+    }
+
+    @Override
     public void pitStop() {
         System.out.println("Пора сменить колёса! Заезжай на Pit Stop.");
     }
@@ -95,6 +102,7 @@ public class Bus extends Mobil implements Competing {
     public void maxSpeed() {
         System.out.println("Максимальная скорость " + MAX_SPEED_CAR + " км/ч.");
     }
+
     @Override
     public String toString() {
         return  this.typeAuto + ": " + this.brand + ", модель - " + this.model
