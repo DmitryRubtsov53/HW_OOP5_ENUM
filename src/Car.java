@@ -2,8 +2,8 @@ import java.util.Objects;
 
 public class Car extends Mobil implements Competing{
 
-    String brand;
-    String model;
+    private String brand;
+    private String model;
     private double engineVolume;
     private String typeAuto;
     public static final double MAX_SPEED_CAR = 250;
@@ -12,9 +12,27 @@ public class Car extends Mobil implements Competing{
 
 // ENUM ********************************************************************************
     public enum TypeBodyCar {
-        SEDAN, HUNCHBOOK, COUPE, STATE, OFF_ROAD, CROSSOVER, PICKUP, VAN, MINIVAN;
+        SEDAN("Седан"),
+        HUNCHBOOK("Хетчбек"),
+        COUPE("Купе"),
+        STATE("Универсал"),
+        OFF_ROAD("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн");
+
+        private final String typeBody;
+
+        TypeBodyCar(String typeBody) {
+            this.typeBody = typeBody != null && !typeBody.isBlank() ? typeBody : "Данных недостаточно";
+        }
+
+        public String getTypeBody() { return typeBody;
+        }
 
     }
+
 
 // getters **********************************************************************************************
 
@@ -29,25 +47,32 @@ public class Car extends Mobil implements Competing{
 
     public TypeBodyCar getTypeBodyCar() { return typeBodyCar;
     }
+    //    public void getTypeBody() {
+//        if (this.typeBody != null) {
+//            System.out.println(getBrand()+" "+getModel()+" is a " + getTypeBody());
+//        } else {
+//            System.out.println("Not enough data");
+//        }
     // setters **********************************************************************************************
 
     public void setBrand(String brand) {
-        this.brand = (brand != null && !brand.isBlank() && !brand.isEmpty()) ? brand : "default";
+        this.brand = (brand != null && !brand.isBlank()) ? brand : "default";
     }
     public void setModel(String model) {
-        this.model = (model != null && !model.isBlank() && !model.isEmpty())? model : "default";
+        this.model = (model != null && !model.isBlank())? model : "default";
     }
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = engineVolume != 0 ? engineVolume : 10;
     }
 
     public void setTypeAuto(String typeAuto) {
-        this.typeAuto = (typeAuto!= null && !typeAuto.isBlank() && !typeAuto.isEmpty())? typeAuto : "default";
+        this.typeAuto = (typeAuto!= null && !typeAuto.isBlank())? typeAuto : "default";
     }
 
     public void setTypeBodyCar(TypeBodyCar typeBodyCar) {
         this.typeBodyCar = typeBodyCar;
     }
+
     // constructor *******************************************************************************************
 
 
@@ -117,7 +142,7 @@ public class Car extends Mobil implements Competing{
     @Override
     public String toString() {
         return  this.typeAuto + ": " + this.brand + ", модель - " + this.model
-                + ", V двигателя - " + this.engineVolume + ", тип кузова - " + this.typeBodyCar + ".";
+                + ", V двигателя - " + this.engineVolume + ", тип кузова - " + typeBodyCar.getTypeBody() + ".";
     }
 } // class **********************************************************************************************************
 

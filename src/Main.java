@@ -25,21 +25,22 @@ public class Main {
         buses[2] = new Bus("Bus", "ЛиАЗ", "Л110", 10, Bus.BusCapacity.AVEREGE);
         buses[3] = new Bus("Bus", "ГАЗ", "Б1500", 9.5, Bus.BusCapacity.SMOLL);
 
+        buses[3].setBusCapacity(Bus.BusCapacity.BIG);
+
         Bus.printAuto(buses);
 
-//        Driver [] drivers = new Driver[3];
-//
-//        Driver <Car> ivan = new Driver<>("Иван", "B", 10 );
-//        System.out.print(ivan);
-//        ivan.driveCar(cars[0]);
-//
-//        Driver <Truck> svan = new Driver<>("Сван", "C", 7 );
-//        System.out.print(svan);
-//        svan.driveTruck(trucks[0]);
-//
-//        Driver <Bus> semen = new Driver<>("Семён", "D", 15 );
-//        System.out.print(semen);
-//        semen.driveBus(buses[0]);
+        Driver <Car> ivan = new Driver<>("Иван", "B", 10 );
+        System.out.print(ivan);
+        ivan.driveCar(cars[0]);
+
+        Driver <Truck> svan = new Driver<>("Сван", "C", 7 );
+        System.out.print(svan);
+        svan.driveTruck(trucks[0]);
+
+        Driver <Bus> semen = new Driver<>("Семён", "D", 15 );
+        System.out.print(semen);
+        semen.driveBus(buses[0]);
+
 
     } // main
 

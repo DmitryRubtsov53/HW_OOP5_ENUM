@@ -1,6 +1,6 @@
 public class Truck extends Mobil implements Competing{
-    String brand;
-    String model;
+    private String brand;
+    private String model;
     private double engineVolume;
     private String typeAuto;
     public static final double MAX_SPEED_CAR = 170;
@@ -9,8 +9,18 @@ public class Truck extends Mobil implements Competing{
 
 // ENUM ********************************************************************************
     public enum TruckCapacity {
-        N1, N2, N3;
-    }
+        N1 ("N1(с полной массой до 3,5 тонн)"),
+        N2("N2 (с полной массой свыше 3,5 до 12 тонн)"),
+        N3("N3 (с полной массой свыше 12 тонн)");
+
+        private final String tonnage;
+
+        TruckCapacity(String tonnage) {
+          this.tonnage = tonnage != null & !tonnage.isBlank() ? tonnage : "Данных недостаточно" ;
+        }
+        public String getTonnage() { return tonnage;
+        }
+}
 // getters **********************************************************************************************
 
     public String getBrand() { return brand;
@@ -27,17 +37,17 @@ public class Truck extends Mobil implements Competing{
     // setters **********************************************************************************************
 
     public void setBrand(String brand) {
-        this.brand = (brand != null && !brand.isBlank() && !brand.isEmpty()) ? brand : "default";
+        this.brand = (brand != null && !brand.isBlank()) ? brand : "default";
     }
     public void setModel(String model) {
-        this.model = (model != null && !model.isBlank() && !model.isEmpty())? model : "default";
+        this.model = (model != null && !model.isBlank())? model : "default";
     }
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = engineVolume != 0 ? engineVolume : 10;
     }
 
     public void setTypeAuto(String typeAuto) {
-        this.typeAuto = (typeAuto!= null && !typeAuto.isBlank() && !typeAuto.isEmpty())? typeAuto : "default";
+        this.typeAuto = (typeAuto!= null && !typeAuto.isBlank())? typeAuto : "default";
     }
 
     public void setTruckCapacity(TruckCapacity truckCapacity) {
@@ -82,7 +92,7 @@ public class Truck extends Mobil implements Competing{
     @Override
     public String toString() {
         return  this.typeAuto + ": " + this.brand + ", модель - " + this.model
-                + ", V двигателя - " + this.engineVolume + ", грузоподъемность " + this.truckCapacity + ".";
+                + ", V двигателя - " + this.engineVolume + ", грузоподъемность " + truckCapacity.getTonnage() + ".";
     }
     public static void printAuto (Truck[] trucks) {
         for (Truck el : trucks) {

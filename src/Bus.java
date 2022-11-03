@@ -8,7 +8,21 @@ public class Bus extends Mobil implements Competing {
     private BusCapacity busCapacity;
 
 // ENUM ********************************************************************************
-    public enum BusCapacity {EXTRA_SMOLL, SMOLL, AVEREGE, BIG, EXTRA_BIG}
+    public enum BusCapacity {
+        EXTRA_SMOLL("особо малая (до 10 мест)"),
+        SMOLL("малая (до 25)"),
+        AVEREGE("средняя (40–50)"),
+        BIG("большая (60–80)"),
+        EXTRA_BIG("особо большая (100–120 мест)");
+
+        private String capacity;
+
+        BusCapacity(String capacity) {
+             this.capacity = capacity != null && capacity.isBlank() ? capacity : "Данных недостаточно";
+        }
+        public String getCapacity() { return capacity;
+        }
+}
 
 
 // getters **********************************************************************************************
@@ -27,17 +41,17 @@ public class Bus extends Mobil implements Competing {
     // setters **********************************************************************************************
 
     public void setBrand(String brand) {
-        this.brand = (brand != null && !brand.isBlank() && !brand.isEmpty()) ? brand : "default";
+        this.brand = (brand != null && !brand.isBlank()) ? brand : "default";
     }
     public void setModel(String model) {
-        this.model = (model != null && !model.isBlank() && !model.isEmpty())? model : "default";
+        this.model = (model != null && !model.isBlank())? model : "default";
     }
     public void setEngineVolume(double engineVolume) {
         this.engineVolume = engineVolume != 0 ? engineVolume : 10;
     }
 
     public void setTypeAuto(String typeAuto) {
-        this.typeAuto = (typeAuto!= null && !typeAuto.isBlank() && !typeAuto.isEmpty())? typeAuto : "default";
+        this.typeAuto = (typeAuto!= null && !typeAuto.isBlank())? typeAuto : "default";
     }
 
     public void setBusCapacity(BusCapacity busCapacity) {
@@ -84,7 +98,7 @@ public class Bus extends Mobil implements Competing {
     @Override
     public String toString() {
         return  this.typeAuto + ": " + this.brand + ", модель - " + this.model
-                + ", V двигателя - " + this.engineVolume + ", вместимость " + this.busCapacity + ".";
+                + ", V двигателя - " + this.engineVolume + ", вместимость " + busCapacity.getCapacity() + ".";
     }
     public static void printAuto (Bus[] buses) {
         for (Bus el : buses) {
